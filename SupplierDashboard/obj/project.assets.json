@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\SupplierDashboard.csproj",
+      "projectUniqueName": "C:\\Users\\Hp\\source\\repos\\SupplierDashboard\\SupplierDashboard\\SupplierDashboard.csproj",
       "projectName": "SupplierDashboard",
-      "projectPath": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\SupplierDashboard.csproj",
+      "projectPath": "C:\\Users\\Hp\\source\\repos\\SupplierDashboard\\SupplierDashboard\\SupplierDashboard.csproj",
       "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-      "outputPath": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\obj\\",
+      "outputPath": "C:\\Users\\Hp\\source\\repos\\SupplierDashboard\\SupplierDashboard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
