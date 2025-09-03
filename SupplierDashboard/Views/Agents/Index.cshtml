@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Manage Agents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mb-4">Manage Agents</h1>
+
+<!-- Agents Table -->
+<div class="table-container">
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <a href="c:\users\hp\source\repos\supplierdashboard\supplierdashboard\views\agents\index.cshtml">c:\users\hp\source\repos\supplierdashboard\supplierdashboard\views\agents\index.cshtml</a>
+                <th>Agent Name</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Agency Name</th>
+                <th>Status</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic agent in ViewBag.Agents)
+            {
+                <tr>
+                    <td>@agent.AgentName</td>
+                    <td>@agent.UserName</td>
+                    <td>@agent.Email</td>
+                    <td>@agent.AgencyName</td>
+                    <td>
+                        @if (agent.Status == "Active")
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Inactive</span>
+                        }
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm btn-view">View</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <!-- Add New Agent Button -->
+    <div class="mt-3">
+        <a href="/Agents/AddAgent" class="btn btn-success">Add New Agent</a>
+    </div>
+    </div>
+</div>
+
+<style>
+    /* Additional styles for this page */
+    .badge {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+    /* Make empty cells look cleaner */
+    td:empty {
+        color: #6c757d;
+        font-style: italic;
+    }
+
+        td:empty::before {
+            content: "";
+        }
+</style>
