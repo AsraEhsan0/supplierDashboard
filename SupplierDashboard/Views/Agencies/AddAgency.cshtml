@@ -1,4 +1,6 @@
-﻿@{
+﻿@model SupplierDashboard.Models.Entities.Agency
+
+@{
     ViewData["Title"] = "Add New Agency";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,32 +8,36 @@
 <h1 class="mb-4">Add New Agency</h1>
 
 <div class="form-container">
-    <form method="post" action="/Agencies/AddAgency" enctype="multipart/form-data">
+    <form asp-action="AddAgency" asp-controller="Agencies" method="post" enctype="multipart/form-data">
         <div class="row mb-3">
             <!-- Agency Name -->
             <div class="col-md-6">
-                <label for="agencyName" class="form-label">Agency Name</label>
-                <input type="text" class="form-control" id="agencyName" name="agencyName" required />
+                <label asp-for="AgencyName" class="form-label"></label>
+                <input asp-for="AgencyName" class="form-control" required />
+                <span asp-validation-for="AgencyName" class="text-danger"></span>
             </div>
 
             <!-- Email -->
             <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required />
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-3">
             <!-- Phone -->
             <div class="col-md-6">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required />
+                <label asp-for="Phone" class="form-label"></label>
+                <input asp-for="Phone" type="tel" class="form-control" required />
+                <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
 
             <!-- Address -->
             <div class="col-md-6">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                <label asp-for="Address" class="form-label"></label>
+                <textarea asp-for="Address" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
         </div>
 
@@ -42,22 +48,23 @@
                 <input type="file" class="form-control" id="logo" name="logo" accept="image/*" />
             </div>
 
-           
+            <!-- Status -->
             <div class="col-md-6 d-flex align-items-end">
                 <div class="col-md-6">
-                        <label>Status</label>
-                        <select name="active" class="form-select">
-                            <option value="true">Active</option>
-                            <option value="false" selected>Inactive</option>
-                        </select>
-                    </div>
+                    <label asp-for="IsActive" class="form-label">Status</label>
+                    <select asp-for="IsActive" class="form-select">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                </div>
             </div>
         </div>
 
         <!-- Buttons -->
         <div class="form-buttons">
             <button type="submit" class="btn btn-success me-3">Save Agency</button>
-            <a href="/Agencies" class="btn btn-secondary">Cancel</a>
+            <a asp-action="Index" asp-controller="Agencies" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
@@ -85,10 +92,10 @@
         transition: border-color 0.3s ease;
     }
 
-        .form-control:focus, .form-select:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-        }
+    .form-control:focus, .form-select:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
 
     .form-check {
         padding: 12px;
@@ -118,10 +125,10 @@
         border-radius: 5px;
     }
 
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
 
     .btn-secondary {
         background-color: #6c757d;
@@ -134,10 +141,10 @@
         display: inline-block;
     }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            border-color: #545b62;
-            color: white;
-            text-decoration: none;
-        }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+        color: white;
+        text-decoration: none;
+    }
 </style>

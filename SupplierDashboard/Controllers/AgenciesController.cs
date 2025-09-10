@@ -1,52 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SupplierDashboard.Data;
+using SupplierDashboard.Models.Entities;
 
 namespace SupplierDashboard.Controllers
 {
     public class AgenciesController : Controller
     {
-        private static List<dynamic> agenciesList = new List<dynamic>
-        {
-            new {
-                AgencyName = "global",
-                Email = "global123@gmail.com",
-                Phone = "90274012",
-                Address = "bahrain manma",
-                Status = "Inactive"
-            },
-            new {
-                AgencyName = "sky",
-                Email = "sky123@gmail.com",
-                Phone = "48764665",
-                Address = "manama",
-                Status = "Inactive"
-            },
-            new {
-                AgencyName = "Global Travels",
-                Email = "global@travel.com",
-                Phone = "1234567890",
-                Address = "Manama, Bahrain",
-                Status = "Inactive"
-            },
-            new {
-                AgencyName = "easy travels",
-                Email = "easy123@gmail.com",
-                Phone = "48764665",
-                Address = "dubai",
-                Status = "Inactive"
-            },
-            new {
-                AgencyName = "Sky Travels",
-                Email = "skytravel123@gmail.com",
-                Phone = "9078675",
-                Address = "pakistan,toba tek singh",
-                Status = "Inactive"
-            }
-        };
+        private readonly ApplicationDbContext _context;
 
-        public IActionResult Index()
+        public AgenciesController(ApplicationDbContext context)
         {
-            ViewBag.Agencies = agenciesList;
-            return View();
+            _context = context;
+        }
+
+        // Return strongly typed list
+        public async Task<IActionResult> Index()
+        {
+            var agencies = await _context.Agencies.Include(a => a.Agents).ToListAsync();
+            return View(agencies);
         }
 
         public IActionResult AddAgency()
@@ -55,43 +27,26 @@ namespace SupplierDashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAgency(string agencyName, string email, string phone, string address, bool active = false)
+        public async Task<IActionResult> AddAgency(Agency agency)
         {
-            // Create new agency object
-            var newAgency = new
+            if (ModelState.IsValid)
             {
-                AgencyName = agencyName ?? "",
-                Email = email ?? "",
-                Phone = phone ?? "",
-                Address = address ?? "",
-                Status = active ? "Active" : "Inactive"
-            };
-
-            agenciesList.Add(newAgency);
-
-            return RedirectToAction("Index");
+                _context.Agencies.Add(agency);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(agency);
         }
 
         [HttpPost]
-        public IActionResult ToggleStatus(int index)
+        public async Task<IActionResult> ToggleStatus(int id)
         {
-            if (index >= 0 && index < agenciesList.Count)
+            var agency = await _context.Agencies.FindAsync(id);
+            if (agency != null)
             {
-                var agency = agenciesList[index];
-                var newStatus = agency.Status == "Active" ? "Inactive" : "Active";
-
-                var updatedAgency = new
-                {
-                    AgencyName = agency.AgencyName,
-                    Email = agency.Email,
-                    Phone = agency.Phone,
-                    Address = agency.Address,
-                    Status = newStatus
-                };
-
-                agenciesList[index] = updatedAgency;
+                agency.IsActive = !agency.IsActive;
+                await _context.SaveChangesAsync();
             }
-
             return RedirectToAction("Index");
         }
     }

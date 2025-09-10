@@ -1,26 +1,50 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SupplierDashboard.Data;
 
 namespace SupplierDashboard.Controllers
 {
     public class DashboardController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public DashboardController(ApplicationDbContext context)
         {
-            ViewBag.TotalGroups = 12;
-            ViewBag.AvailableGroups = 85;
+            _context = context;
+        }
 
-            ViewBag.RecentBookings = new object[]
-            {
-                new { GroupName = "Group A", AgentId = "AGT001", AgencyName = "Sky Travels", PassengerName = "Ali Khan", PNR = "PNR12345", Segment = "LHE - BAH" },
-                new { GroupName = "Group B", AgentId = "AGT002", AgencyName = "Falcon Tours", PassengerName = "Fatima Zahra", PNR = "PNR67890", Segment = "LHE - BAH" },
-                new { GroupName = "Group C", AgentId = "AGT003", AgencyName = "Global Wings", PassengerName = "Omar Faisal", PNR = "PNR11122", Segment = "LHE - BAH" }
-            };
+        public async Task<IActionResult> Index()
+        {
+            ViewBag.TotalGroups = await _context.Bookings.Select(b => b.GroupName).Distinct().CountAsync();
+            ViewBag.AvailableGroups = await _context.Agencies.CountAsync(a => a.IsActive);
 
-            ViewBag.ActiveGroups = new object[]
-            {
-                new { GroupName = "Group D", FlightNo = "FL001", PNR = "PNR44444", SeatsSold = 25 },
-                new { GroupName = "Group E", FlightNo = "FL002", PNR = "PNR55555", SeatsSold = 18 }
-            };
+            ViewBag.RecentBookings = await _context.Bookings
+                .Include(b => b.Agent)
+                .ThenInclude(a => a.Agency)
+                .OrderByDescending(b => b.BookingDate)
+                .Take(5)
+                .Select(b => new
+                {
+                    GroupName = b.GroupName,
+                    AgentId = b.Agent.Id,
+                    AgencyName = b.Agent.Agency.AgencyName,
+                    PassengerName = b.PassengerName,
+                    PNR = b.PNR,
+                    Segment = b.Segment
+                })
+                .ToListAsync();
+
+            ViewBag.ActiveGroups = await _context.Bookings
+                .Where(b => !string.IsNullOrEmpty(b.FlightNo))
+                .Take(5)
+                .Select(b => new
+                {
+                    GroupName = b.GroupName,
+                    FlightNo = b.FlightNo,
+                    PNR = b.PNR,
+                    SeatsSold = b.SeatsSold
+                })
+                .ToListAsync();
 
             return View();
         }

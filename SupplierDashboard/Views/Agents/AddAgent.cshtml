@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SupplierDashboard.Models.Entities.Agent
+@{
     ViewData["Title"] = "Add New Agent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,55 +7,87 @@
 <h1 class="mb-4">Add New Agent</h1>
 
 <div class="form-container">
-    <form method="post" action="/Agents/AddAgent">
+    @* Show validation errors *@
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    @foreach (var error in modelState.Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="AddAgent" method="post">
+
         <div class="row mb-3">
+            <!-- Agent Name -->
             <div class="col-md-6">
-                <label for="agentName" class="form-label">Agent Name</label>
-                <input type="text" class="form-control" id="agentName" name="agentName" required />
+                <label asp-for="AgentName" class="form-label">Agent Name</label>
+                <input asp-for="AgentName" class="form-control" />
+                <span asp-validation-for="AgentName" class="text-danger"></span>
             </div>
 
+            <!-- Agency -->
             <div class="col-md-6">
-                <label for="agencyName" class="form-label">Agency Name</label>
-                <select class="form-select" id="agencyName" name="agencyName" required>
+                <label asp-for="AgencyId" class="form-label">Agency</label>
+                <select asp-for="AgencyId" class="form-select">
                     <option value="">-- Select Agency --</option>
-                    @foreach (string agency in ViewBag.Agencies)
+                    @if (ViewBag.Agencies != null)
                     {
-                        <option value="@agency">@agency</option>
+                        @foreach (var agency in ViewBag.Agencies)
+                        {
+                            <option value="@agency.Id">@agency.AgencyName</option>
+                        }
                     }
                 </select>
+                <span asp-validation-for="AgencyId" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-3">
+            <!-- User Name -->
             <div class="col-md-6">
-                <label for="userName" class="form-label">User Name</label>
-                <input type="text" class="form-control" id="userName" name="userName" />
+                <label asp-for="UserName" class="form-label">User Name</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
+            <!-- Email -->
             <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" />
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-4">
+            <!-- Password -->
             <div class="col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required />
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
+            <!-- Status -->
             <div class="col-md-6">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-select" id="status" name="status">
-                    <option value="Active" selected>Active</option>
-                    <option value="Inactive">Inactive</option>
+                <label asp-for="IsActive" class="form-label">Status</label>
+                <select asp-for="IsActive" class="form-select">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
                 </select>
             </div>
         </div>
 
+        <!-- Buttons -->
         <div class="form-buttons">
             <button type="submit" class="btn btn-success me-3">Save Agent</button>
-            <a href="/Agents" class="btn btn-secondary">Cancel</a>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
@@ -85,6 +118,25 @@
         .form-control:focus, .form-select:focus {
             border-color: #3498db;
             box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .form-control.input-validation-error, .form-select.input-validation-error {
+            border-color: #dc3545;
+        }
+
+    .text-danger {
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .alert-danger {
+        margin-bottom: 20px;
+    }
+
+        .alert-danger ul {
+            list-style-type: disc;
+            margin-left: 20px;
         }
 
     .form-buttons {

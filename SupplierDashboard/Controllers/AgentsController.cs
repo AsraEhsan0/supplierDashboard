@@ -1,76 +1,67 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SupplierDashboard.Data;
+using SupplierDashboard.Models.Entities;
 
 namespace SupplierDashboard.Controllers
 {
     public class AgentsController : Controller
     {
-        private static List<dynamic> agentsList = new List<dynamic>
-        {
-            new {
-                AgentName = "yasir ali",
-                UserName = "",
-                Email = "",
-                AgencyName = "",
-                Status = "Active"
-            },
-            new {
-                AgentName = "mubashar",
-                UserName = "",
-                Email = "global123@gmail.com",
-                AgencyName = "global",
-                Status = "Active"
-            },
-            new {
-                AgentName = "Mubashar Ali",
-                UserName = "mubashar",
-                Email = "mubashar@example.com",
-                AgencyName = "Global Travels",
-                Status = "Active"
-            },
-            new {
-                AgentName = "yasir",
-                UserName = "yasir294",
-                Email = "yasir294@gmail.com",
-                AgencyName = "Sky Travels",
-                Status = "Active"
-            }
-        };
+        private readonly ApplicationDbContext _context;
 
-        public IActionResult Index()
+        public AgentsController(ApplicationDbContext context)
         {
-            ViewBag.Agents = agentsList;
-            return View();
+            _context = context;
         }
 
-        public IActionResult AddAgent()
+        // GET: /Agents
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Agencies = new List<string>
-            {
-                "Sky Travels",
-                "Global Travels",
-                "Falcon Tours",
-                "Emirates Travel",
-                "Gulf Wings"
-            };
+            var agents = await _context.Agents
+                .Include(a => a.Agency)
+                .ToListAsync();
+            return View(agents);
+        }
 
-            return View();
+        // GET: /Agents/AddAgent
+        public async Task<IActionResult> AddAgent()
+        {
+            ViewBag.Agencies = await _context.Agencies
+                .Where(a => a.IsActive)
+                .Select(a => new { a.Id, a.AgencyName })
+                .ToListAsync();
+            return View(new Agent());
         }
 
         [HttpPost]
-        public IActionResult AddAgent(string agentName, string userName, string email, string agencyName, string password, string status)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAgent(Agent agent)
         {
-            var newAgent = new
+            ModelState.Remove("Agency");
+
+            if (ModelState.IsValid)
             {
-                AgentName = agentName ?? "",
-                UserName = userName ?? "",
-                Email = email ?? "",
-                AgencyName = agencyName ?? "",
-                Status = status ?? "Active"
-            };
+                try
+                {
+                    agent.CreatedAt = DateTime.UtcNow;
+                    _context.Agents.Add(agent);
+                    await _context.SaveChangesAsync();
 
-            agentsList.Add(newAgent);
+                    TempData["Success"] = "Agent added successfully!";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "An error occurred while saving the agent: " + ex.Message);
+                }
+            }
 
-            return RedirectToAction("Index");
+            ViewBag.Agencies = await _context.Agencies
+                .Where(a => a.IsActive)
+                .Select(a => new { a.Id, a.AgencyName })
+                .ToListAsync();
+
+            return View(agent);
         }
     }
 }
