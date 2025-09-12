@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "E:\\Orbilon Technology\\supplierDashboard\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|e:\\orbilon technology\\supplierdashboard\\supplierdashboard\\controllers\\api\\walletsettingsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|solutionrelative:supplierdashboard\\controllers\\api\\walletsettingsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|e:\\orbilon technology\\supplierdashboard\\supplierdashboard\\controllers\\api\\wallettransactionsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|solutionrelative:supplierdashboard\\controllers\\api\\wallettransactionsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|e:\\orbilon technology\\supplierdashboard\\supplierdashboard\\models\\entities\\wallettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|solutionrelative:supplierdashboard\\models\\entities\\wallettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|e:\\orbilon technology\\supplierdashboard\\supplierdashboard\\models\\entities\\walletsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|solutionrelative:supplierdashboard\\models\\entities\\walletsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|e:\\orbilon technology\\supplierdashboard\\supplierdashboard\\controllers\\api\\agenciesapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12B49263-8351-4BFE-B41E-0DE5AE552FB3}|SupplierDashboard\\SupplierDashboard.csproj|solutionrelative:supplierdashboard\\controllers\\api\\agenciesapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,19 +43,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WalletSettingsApiController.cs",
+              "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\WalletSettingsApiController.cs",
+              "RelativeDocumentMoniker": "SupplierDashboard\\Controllers\\Api\\WalletSettingsApiController.cs",
+              "ToolTip": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\WalletSettingsApiController.cs",
+              "RelativeToolTip": "SupplierDashboard\\Controllers\\Api\\WalletSettingsApiController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwEYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T22:49:10.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WalletTransactionsApiController.cs",
+              "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\WalletTransactionsApiController.cs",
+              "RelativeDocumentMoniker": "SupplierDashboard\\Controllers\\Api\\WalletTransactionsApiController.cs",
+              "ToolTip": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\WalletTransactionsApiController.cs",
+              "RelativeToolTip": "SupplierDashboard\\Controllers\\Api\\WalletTransactionsApiController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwNIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T22:22:01.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WalletTransaction.cs",
+              "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Models\\Entities\\WalletTransaction.cs",
+              "RelativeDocumentMoniker": "SupplierDashboard\\Models\\Entities\\WalletTransaction.cs",
+              "ToolTip": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Models\\Entities\\WalletTransaction.cs",
+              "RelativeToolTip": "SupplierDashboard\\Models\\Entities\\WalletTransaction.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwCcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T22:11:49.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WalletSetting.cs",
+              "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Models\\Entities\\WalletSetting.cs",
+              "RelativeDocumentMoniker": "SupplierDashboard\\Models\\Entities\\WalletSetting.cs",
+              "ToolTip": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Models\\Entities\\WalletSetting.cs",
+              "RelativeToolTip": "SupplierDashboard\\Models\\Entities\\WalletSetting.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T22:14:42.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AgenciesApiController.cs",
               "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\AgenciesApiController.cs",
               "RelativeDocumentMoniker": "SupplierDashboard\\Controllers\\Api\\AgenciesApiController.cs",
               "ToolTip": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Controllers\\Api\\AgenciesApiController.cs",
               "RelativeToolTip": "SupplierDashboard\\Controllers\\Api\\AgenciesApiController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAkwGMAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-10T21:48:52.228Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\Orbilon Technology\\supplierDashboard\\SupplierDashboard\\Models\\Entities\\User.cs",
               "RelativeDocumentMoniker": "SupplierDashboard\\Models\\Entities\\User.cs",
@@ -47,8 +115,7 @@
               "RelativeToolTip": "SupplierDashboard\\Models\\Entities\\User.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-09T19:57:25.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-09T19:57:25.762Z"
             }
           ]
         }

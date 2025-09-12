@@ -23,7 +23,8 @@ namespace SupplierDashboard.Data
         public DbSet<DiscountAgency> DiscountAgencies { get; set; }
         public DbSet<VoidService> VoidServices { get; set; }
         public DbSet<VoidServiceAgency> VoidServiceAgencies { get; set; }
-
+        public DbSet<WalletSetting> WalletSetting { get; set; }
+        public DbSet<WalletTransaction> WalletTransactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

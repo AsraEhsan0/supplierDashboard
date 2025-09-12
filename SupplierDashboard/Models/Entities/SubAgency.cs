@@ -35,5 +35,6 @@ namespace SupplierDashboard.Models.Entities
         public bool Status { get; set; } = true;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public virtual ICollection<WalletTransaction> WalletTransactions { get; set; } = new List<WalletTransaction>();
     }
 }
